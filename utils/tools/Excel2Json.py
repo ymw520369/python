@@ -65,8 +65,9 @@ def readWb2Json(filename: string):
             cell = row[cellnum]
             ctype = cell.ctype
             value = cell.value
-            if ctype == 2:  # 如果是整形
-                value = int(value)
+            if ctype == 2:  # 如果是数字类型
+                if value % 1 == 0.0:
+                    value = int(value)
             elif ctype == 3:
                 # 转成datetime对象
                 date = datetime(*xldate_as_tuple(value, 0))
@@ -81,7 +82,7 @@ def readWb2Json(filename: string):
 def excel2json(_fromDir: string, _toDir: string):
     for parent, dirnames, filenames in os.walk(_fromDir):
         for filename in filenames:
-            if filename.startswith("~$"):
+            if filename.startswith("~$") or not (filename.endswith(".xlsx") or filename.endswith(".xls")):
                 continue
             fromFile = os.path.join(parent, filename)
             mid = parent.replace(_fromDir, _toDir)
@@ -91,7 +92,7 @@ def excel2json(_fromDir: string, _toDir: string):
             print("inputFile = %s,outFile = %s" % (fromFile, tofile))
             data = readWb2Json(fromFile)
             jsonData = json.dumps(data, ensure_ascii=False, indent=4)
-            f = open(tofile, 'w', encoding = "UTF-8")
+            f = open(tofile, 'w', encoding="UTF-8")
             f.write(jsonData)
 
 

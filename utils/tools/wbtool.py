@@ -169,7 +169,7 @@ if __name__ == "__main__":
     print("usages: python xxx.py fromDir javaToDir csToDir")
     print("===================================")
     fromDir = "E:/测试文件/"
-    toJavaDir = "D:/zhmjServer3/utils/main/java/"
+    toJavaDir = "D:/zhmjServer3/src/main/java/"
     # toCsDir = "E:/gen/Assets/Scripts/work/"
     toCsDir = None
     alen = len(sys.argv)
