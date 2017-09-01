@@ -1,19 +1,17 @@
 import requests
-import xxtea
-import six
-import httplib2
 
-url = "http://192.168.199.247:8081/"
+url = "http://localhost:8081/center"
 
 data = """{
-  "accountId": 101,
-  "roleName":"你的名字",
-  "token":"game-token"
+  "serverId": 101,
+  "serverName":"logic 3"
   }
 """
-
-resp = requests.post("http://192.168.199.247:8082/enter/create", json=data)
+# param = {"serverId": 101, "serverName": "logic 3"}
+param = {"token": "token0000101", "uuid": "100sa0s0"}
+resp = requests.post("http://localhost:8081/center/vertify/credential", data=param)
 print(resp.content)
+
 
 
 # [-25, -28, 55, -83, 108, -128, 72, 68, 122, 52, -31, -6, 25, -68, -21, -1]
